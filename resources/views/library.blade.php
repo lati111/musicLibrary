@@ -8,5 +8,12 @@
     </head>
     <body>
         <h1>Muziek Bibliotheek</h1>
+        <nav>
+            <ul>
+                <li><a href="{{route('home')}}">home</a></li>
+                <li><a href="{{route('library')}}">library</a></li>
+                <li><a href="{{route('songs')}}">songs</a></li>
+            </ul>
+        </nav>
     </body>
 </html>
