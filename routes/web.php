@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SongsController;
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name("home");
 
@@ -13,3 +14,8 @@ Route::get('/library', function () {
 Route::get('/songs', function () {
     return view('songs');
 })->name("songs");
+
+Route::get('/newSong', function () {
+    return view('newSong');
+})->name("newSong");
+Route::post('/newSong', [SongsController::class, 'store'])->name("song.add");
