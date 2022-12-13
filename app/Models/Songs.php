@@ -10,4 +10,5 @@ class Songs extends Model
     use HasFactory;
     protected $table = 'song';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 }

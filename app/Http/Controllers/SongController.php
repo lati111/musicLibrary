@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Songs;
 
-class SongsController extends Controller
+class SongController extends Controller
 {
     /**
      * @return \Illuminate\Http\Response
@@ -24,6 +25,12 @@ class SongsController extends Controller
             "autheur" => "required|string|between:6, 32",
             "releaseYear" => "required|integer|digits:4"
         ]);
+
+        $songs = new Songs();
+        $songs->song_name = $request->input('name');
+        $songs->author = $request->input('autheur');
+        $songs->release_year = $request->input('releaseYear');
+        $songs->save();
 
         return back()
             ->with('success', 'You have successfully uploaded a song.');
