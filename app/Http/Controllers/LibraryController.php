@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-class UserController extends Controller
+use App\Models\Songs;
+
+class LibraryController extends Controller
 {
     /**
      * @return \Illuminate\View\View
      */
     public function show()
     {
-        return view('library');
+        return view('library', ["songs" => Songs::all()]);
     }
 }
 

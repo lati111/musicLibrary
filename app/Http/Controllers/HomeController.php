@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class UserController extends Controller
+class HomeController extends Controller
 {
     /**
      * @return \Illuminate\View\View
