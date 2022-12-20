@@ -10,12 +10,11 @@ Route::get('/', function () {
 
 Route::get('/library', [LibraryController::class, 'show'])->name("library");
 
-Route::get('/songs', function () {
-    return view('songs');
-})->name("songs");
+Route::get('/songs', [SongController::class, 'show'])->name("songs");
 
-Route::get('/newSong', function () {
-    return view('newSong');
-})->name("newSong");
-Route::post('/newSong', [SongController::class, 'store'])->name("song.add");
-
+Route::get('/songs/new', [SongController::class, 'showSongForm'])->name("song.new");
+Route::post('/songs/new', [SongController::class, 'store'])->name("song.add");
+Route::get('/songs/delete/{id}', [SongController::class, 'delete'])->name("song.delete");
+Route::get('/songs/delete', function () {
+    return redirect('/songs');
+});

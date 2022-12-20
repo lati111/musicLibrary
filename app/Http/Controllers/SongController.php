@@ -10,7 +10,13 @@ class SongController extends Controller
     /**
      * @return \Illuminate\Http\Response
      */
+
     public function show()
+    {
+        return view('songs');
+    }
+
+    public function showSongForm()
     {
         return view('newSong');
     }
@@ -34,5 +40,13 @@ class SongController extends Controller
 
         return back()
             ->with('success', 'You have successfully uploaded a song.');
+    }
+
+    public function delete(int $id)
+    {
+        $song = Songs::find($id);
+        $song->delete();
+
+        return view('libary', ["success" => "Muziek verwijdert"]);
     }
 }
