@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.master')
 
-        <title>Songs</title>
-    </head>
-    <body>
-        <h1>Voeg muziek toe</h1>
-        <nav>
-            <ul>
-                <li><a href="{{route('home')}}">home</a></li>
-                <li><a href="{{route('library')}}">library</a></li>
-                <li><a href="{{route('songs')}}">songs</a></li>
-            </ul>
-        </nav>
-        @if ($message = Session::get('success'))
+@section('title', 'Songs')
+
+@section('header', 'Voeg muziek toe')
+
+@section('content')
+    @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
                 <strong>{{ $message }}</strong>
             </div>
@@ -46,5 +36,4 @@
             <br><br>
             <input type="submit">
         </form>
-    </body>
-</html>
+@endsection
