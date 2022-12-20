@@ -24,7 +24,11 @@
                 <b>Release jaar: </b>
                 <span>{{$song["release_year"]}}</span>
             </div>
-            <div><a href="{{ route('song.delete', ["id" => $song["id"]]) }}">Verwijder</a></div>
+            <div>
+                <a href="{{ route('song.edit', ["id" => $song["id"]]) }}">Update</a>
+                <span> </span>
+                <a href="{{ route('song.delete', ["id" => $song["id"]]) }}">Verwijder</a>
+            </div>
         </div>
         <br>
     @endforeach

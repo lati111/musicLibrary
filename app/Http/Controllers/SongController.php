@@ -16,14 +16,16 @@ class SongController extends Controller
         return view('songs');
     }
 
-    public function showSongForm()
+    public function showNewForm()
     {
         return view('newSong');
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
+    public function showEditForm(int $id)
+    {
+        return view('editSong', ["id" => $id, "song" => Songs::find($id)->toArray()]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -42,11 +44,28 @@ class SongController extends Controller
             ->with('success', 'You have successfully uploaded a song.');
     }
 
+    public function update(Request $request, int $id)
+    {
+        $request->validate([
+            "name" => "required|string|between:3,32",
+            "autheur" => "required|string|between:6, 32",
+            "releaseYear" => "required|integer|digits:4"
+        ]);
+
+        $songs = Songs::find($id);
+        $songs->song_name = $request->input('name');
+        $songs->author = $request->input('autheur');
+        $songs->release_year = $request->input('releaseYear');
+        $songs->save();
+
+        return view('library', ["songs" => Songs::all(), "success" => "Muziek geupdate"]);
+    }
+
     public function delete(int $id)
     {
         $song = Songs::find($id);
         $song->delete();
 
-        return view('libary', ["success" => "Muziek verwijdert"]);
+        return view('library', ["songs" => Songs::all(), "success" => "Muziek verwijdert"]);
     }
 }
